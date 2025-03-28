@@ -42,6 +42,8 @@ posts = [
     },
 ]
 
+posts_dict = {post['id']: post for post in posts}
+
 
 def index(request):
     template = 'blog/index.html'
@@ -49,9 +51,11 @@ def index(request):
     return render(request, template, context)
 
 
-def post_detail(request, id):
+def post_detail(request, post_id):
+    if post_id not in posts_dict:
+        raise KeyError('Нет такого ключа')
+    context = {'post': posts_dict[post_id]}
     template = 'blog/detail.html'
-    context = {'post': posts[id]}
     return render(request, template, context)
 
 
