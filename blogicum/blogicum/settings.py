@@ -13,7 +13,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 
 # Quick-start development settings - unsuitable for production
@@ -52,12 +52,11 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'blogicum.urls'
-TEMPLATES_DIR = '/Users/vladharcenko/Desktop/Учеба 4 сем/dev/django_sprint1/html'
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': [BASE_DIR / 'html'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,7 +121,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
-    '/Users/vladharcenko/Desktop/Учеба 4 сем/dev/django_sprint1/html/static_dev',
+    BASE_DIR / 'html' / 'static_dev',
 ]
 
 # Default primary key field type
