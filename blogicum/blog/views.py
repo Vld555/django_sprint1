@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import Http404
 posts = [
     {
         'id': 0,
@@ -53,7 +54,7 @@ def index(request):
 
 def post_detail(request, post_id):
     if post_id not in posts_dict:
-        raise KeyError('Нет такого ключа')
+        raise Http404(f'Пост с id {post_id} не найден')
     context = {'post': posts_dict[post_id]}
     template = 'blog/detail.html'
     return render(request, template, context)
